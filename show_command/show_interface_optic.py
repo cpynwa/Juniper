@@ -4,7 +4,7 @@ import re
 import os
 
 # 장비 접속
-# dev = Device(host='x.x.x.x', user='eknow', password='Test1234')
+# dev = Device(host='X.X.X.X', user='XXXX', passwd='XXXX')
 
 # 정보 수집
 # with StartShell(dev) as ss:
