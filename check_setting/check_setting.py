@@ -1,6 +1,4 @@
 from jnpr.junos import Device
-
-
 """
 Junos Ver = over 16.1R3
 filename = show_interfaces_status.py
@@ -23,7 +21,7 @@ class Devices:
 
 
 #장비 접속
-device1 = Devices(host='211.45.116.132', user='eknow', passwd='Test1234')
+device1 = Devices(host='X.X.X.X', user='XXXX', passwd='XXXX')
 dev1 = Device(host=device1.host, user=device1.user, password=device1.passwd)
 
 #RPC 정보 수집
