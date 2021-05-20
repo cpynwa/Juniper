@@ -4,19 +4,18 @@ import re
 import os
 
 # 장비 접속
-# dev = Device(host='X.X.X.X', user='XXXX', passwd='XXXX')
+dev = Device()
 
 # 정보 수집
-# with StartShell(dev) as ss:
-#     extensive = ss.run("cli -c 'show interfaces extensive | no-more'")[1]
-#     hardware = ss.run("cli -c 'show chassis hardware detail | no-more'")[1]
-#
-# with open("hardware.txt", "w") as file1:
-#     file1.write(hardware)
-#
-# with open("extensive.txt", "w") as file2:
-#     file2.write(extensive)
+with StartShell(dev) as ss:
+    extensive = ss.run("cli -c 'show interfaces extensive | no-more'")[1]
+    hardware = ss.run("cli -c 'show chassis hardware detail | no-more'")[1]
 
+with open("hardware.txt", "w") as file1:
+    file1.write(hardware)
+
+with open("extensive.txt", "w") as file2:
+    file2.write(extensive)
 
 with open("../hardware.txt", "r") as hfile:
     hlines = hfile.readlines()
@@ -24,8 +23,8 @@ with open("../hardware.txt", "r") as hfile:
 with open("../extensive.txt", "r") as efile:
     elines = efile.readlines()
 
-# os.remove("extensive.txt")
-# os.remove("hardware.txt")
+os.remove("extensive.txt")
+os.remove("hardware.txt")
 
 def collect_optic_info(lines):
     interface_list = []

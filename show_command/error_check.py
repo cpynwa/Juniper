@@ -4,27 +4,18 @@ import re
 """
 Junos Ver = over 16.1R3
 filename = show_interfaces_status.py
-location = /var/db/script/op/show_interfaces_status.py
+location = /var/db/script/op/error_check.py
 
 - 적용 명령어
 set system scripts language python3
-set system scripts op file show_interfaces_status.py
+set system scripts op file error_check.py
 
 - 실행 명령어
-root@MX960> op show_interface_status1.py
+root@MX960> op error_check.py
 """
 
-# device class 속성값정의
-class Devices:
-    def __init__(self, host, user, passwd):
-        self.host = host
-        self.user = user
-        self.passwd = passwd
-
-
 #장비 접속
-device1 = Devices(host='X.X.X.X', user='XXXX', passwd='XXXX')
-dev1 = Device(host=device1.host, user=device1.user, password=device1.passwd)
+dev1 = Device()
 
 #RPC 정보 수집
 with dev1:
