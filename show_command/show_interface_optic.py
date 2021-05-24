@@ -1,30 +1,17 @@
-from jnpr.junos.utils.start_shell import StartShell
-from jnpr.junos import Device
 import re
 import os
 
-# 장비 접속
-dev = Device()
+os.system("cli -c 'show chassis hardware detail | no-more' > /tmp/hardware.txt")
+os.system("cli -c 'show interfaces extensive | no-more' > /tmp/extensive.txt")
 
-# 정보 수집
-with StartShell(dev) as ss:
-    extensive = ss.run("cli -c 'show interfaces extensive | no-more'")[1]
-    hardware = ss.run("cli -c 'show chassis hardware detail | no-more'")[1]
-
-with open("hardware.txt", "w") as file1:
-    file1.write(hardware)
-
-with open("extensive.txt", "w") as file2:
-    file2.write(extensive)
-
-with open("../hardware.txt", "r") as hfile:
+with open("/tmp/hardware.txt", "r") as hfile:
     hlines = hfile.readlines()
 
-with open("../extensive.txt", "r") as efile:
+with open("/tmp/extensive.txt", "r") as efile:
     elines = efile.readlines()
 
-os.remove("extensive.txt")
-os.remove("hardware.txt")
+os.remove("/tmp/extensive.txt")
+os.remove("/tmp/hardware.txt")
 
 def collect_optic_info(lines):
     interface_list = []
