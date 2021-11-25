@@ -14,7 +14,8 @@ root@MX960> op check_setting.py
 """
 
 #장비 접속
-dev1 = Device()
+#dev1 = Device()
+dev1 = Device(host='211.45.116.134', user='eknow', password='Test1234')
 
 #RPC 정보 수집
 with dev1:
@@ -43,7 +44,7 @@ def collect_interface_setting():
             }
 
         information["interface"] = physical_interface.findtext('name')
-        information["ipaddress"] = "X"
+        information["ipaddress"] = "-"
         information["description"] = physical_interface.findtext('description')
         information["hold_time_up"] = physical_interface.findtext('hold-time/up')
         information["hold_time_down"] = physical_interface.findtext('hold-time/down')
@@ -73,9 +74,9 @@ def collect_interface_setting():
             information_logical["interface"] = information["interface"] + "." + logical_interface.findtext('name')
             information_logical["ipaddress"] = logical_interface.findtext('family/inet/address/name')
             information_logical["description"] = logical_interface.findtext('description')
-            information_logical["hold_time_up"] = "X"
-            information_logical["hold_time_down"] = 'X'
-            information_logical["mtu"] = "X"
+            information_logical["hold_time_up"] = "-"
+            information_logical["hold_time_down"] = "-"
+            information_logical["mtu"] = "-"
 
             merge.append(information_logical)
     return merge
@@ -158,67 +159,67 @@ for i in range(len(interface)):
             interface[i].update(ospf[j])
             break
         else:
-            interface[i]["ospf_area"] = "X"
-            interface[i]["ospf_type"] = "X"
-            interface[i]["ospf_bfd_minimum"] = "X"
-            interface[i]["ospf_bfd_multiplier"] = "X"
-            interface[i]["ospf_metric"] = "X"
+            interface[i]["ospf_area"] = "-"
+            interface[i]["ospf_type"] = "-"
+            interface[i]["ospf_bfd_minimum"] = "-"
+            interface[i]["ospf_bfd_multiplier"] = "-"
+            interface[i]["ospf_metric"] = "-"
     for j in range(len(mpls)):
         if interface[i]["interface"] == mpls[j]["interface"]:
             interface[i].update(mpls[j])
             break
         else:
-            interface[i]["mpls_set"] = "X"
+            interface[i]["mpls_set"] = "-"
     for j in range(len(ldp)):
         if interface[i]["interface"] == ldp[j]["interface"]:
             interface[i].update(ldp[j])
             break
         else:
-            interface[i]["ldp_set"] = "X"
+            interface[i]["ldp_set"] = "-"
     for j in range(len(ospf3)):
         if interface[i]["interface"] == ospf3[j]["interface"]:
             interface[i].update(ospf3[j])
             break
         else:
-            interface[i]["ospf3_area"] = "X"
-            interface[i]["ospf3_type"] = "X"
-            interface[i]["ospf3_metric"] = "X"
+            interface[i]["ospf3_area"] = "-"
+            interface[i]["ospf3_type"] = "-"
+            interface[i]["ospf3_metric"] = "-"
 
 # 출력
 print("interface".ljust(14) +
-          "ipaddress".ljust(18) +
-          "description".ljust(18) +
-          "h_up".ljust(5) +
-          "h_dn".ljust(5) +
-          "mtu".ljust(5) +
-          "area".ljust(9) +
-          "type".ljust(5) +
-          "bfd_min".ljust(8) +
-          "bfd_mul".ljust(8) +
-          "cost".ljust(6) +
-          "mpls".ljust(5) +
-          "ldp".ljust(4) +
-          "o3_area".ljust(9) +
-          "o3_type".ljust(8) +
-          "o3_cost"
+          "IP-Address".ljust(18) +
+          "Description".ljust(30) +
+          "Holdtime_up".ljust(13) +
+          "Holdtime_dn".ljust(13) +
+          "MTU".ljust(5) +
+          "Area".ljust(11) +
+          "Type".ljust(5) +
+          "BFD_min".ljust(8) +
+          "BFD_mul".ljust(8) +
+          "Cost".ljust(6) +
+          "MPLS".ljust(5) +
+          "LDP".ljust(4) +
+          "O3_area".ljust(9) +
+          "O3_type".ljust(8) +
+          "O3_cost"
           )
 
 for i in range(len(interface)):
     print(
         str(interface[i]["interface"]).ljust(14) +
-        str(interface[i]["ipaddress"]).replace("None", "X").ljust(18) +
-        str(interface[i]["description"]).replace("None", "X").ljust(18) +
-        str(interface[i]["hold_time_up"]).replace("None", "X").ljust(5) +
-        str(interface[i]["hold_time_down"]).replace("None", "X").ljust(5) +
-        str(interface[i]["mtu"]).replace("None", "X").ljust(5) +
-        str(interface[i]["ospf_area"]).replace("None", "X").ljust(9)+
-        str(interface[i]["ospf_type"]).replace("None", "X").ljust(5)+
-        str(interface[i]["ospf_bfd_minimum"]).replace("None", "X").ljust(8)+
-        str(interface[i]["ospf_bfd_multiplier"]).replace("None", "X").ljust(8)+
-        str(interface[i]["ospf_metric"]).replace("None", "X").ljust(6) +
-        str(interface[i]["mpls_set"]).replace("None", "X").ljust(5) +
-        str(interface[i]["ldp_set"]).replace("None", "X").ljust(4) +
-        str(interface[i]["ospf3_area"]).replace("None", "X").ljust(9) +
-        str(interface[i]["ospf3_type"]).replace("None", "X").ljust(8) +
-        str(interface[i]["ospf3_metric"]).replace("None", "X")
+        str(interface[i]["ipaddress"]).replace("None", "-").ljust(18) +
+        str(interface[i]["description"]).replace("None", "-").ljust(30) +
+        str(interface[i]["hold_time_up"]).replace("None", "-").ljust(13) +
+        str(interface[i]["hold_time_down"]).replace("None", "-").ljust(13) +
+        str(interface[i]["mtu"]).replace("None", "-").ljust(5) +
+        str(interface[i]["ospf_area"]).replace("None", "-").ljust(11)+
+        str(interface[i]["ospf_type"]).replace("None", "-").ljust(5)+
+        str(interface[i]["ospf_bfd_minimum"]).replace("None", "-").ljust(8)+
+        str(interface[i]["ospf_bfd_multiplier"]).replace("None", "-").ljust(8)+
+        str(interface[i]["ospf_metric"]).replace("None", "-").ljust(6) +
+        str(interface[i]["mpls_set"]).replace("None", "-").ljust(5) +
+        str(interface[i]["ldp_set"]).replace("None", "-").ljust(4) +
+        str(interface[i]["ospf3_area"]).replace("None", "-").ljust(9) +
+        str(interface[i]["ospf3_type"]).replace("None", "-").ljust(8) +
+        str(interface[i]["ospf3_metric"]).replace("None", "-")
 )

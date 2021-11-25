@@ -1,6 +1,5 @@
 from jnpr.junos import Device
 import re
-import argparse
 
 """
 Junos Ver = over 16.1R3
@@ -16,7 +15,8 @@ root@MX960> op show_all_info.py
 """
 
 #장비 접속
-dev1 = Device()
+#dev1 = Device()
+dev1 = Device(host='211.45.116.134', user='eknow', password='Test1234')
 
 #RPC 정보 수집
 with dev1:
