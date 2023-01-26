@@ -4,7 +4,7 @@ import re
 import os
 
 # 장비 접속
-dev = Device(host='211.45.116.132', user='eknow', password='Test1234')
+dev = Device(host='x.x.x.x', user='test', password='Test1234')
 
 
 # config 정보 수집
