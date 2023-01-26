@@ -2,7 +2,7 @@ from jnpr.junos import Device
 
 """
 Junos Ver = over 16.1R3
-filename = show_interfaces_status.py
+filename = check_setting.py
 location = /var/db/script/op/check_setting.py
 
 - 적용 명령어
@@ -14,8 +14,7 @@ root@MX960> op check_setting.py
 """
 
 #장비 접속
-#dev1 = Device()
-dev1 = Device(host='211.45.116.134', user='eknow', password='Test1234')
+dev1 = Device()
 
 #RPC 정보 수집
 with dev1:
