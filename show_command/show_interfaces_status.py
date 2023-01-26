@@ -15,10 +15,7 @@ root@MX960> op show_interfaces_status.py
 """
 
 #장비 접속
-#dev1 = Device()
-dev1 = Device(host='10.1.113.56', user='root', password='jun000')
-#dev1 = Device(host='10.1.113.41', user='juniper', password='jun2per')
-#dev1 = Device(host='211.45.116.134', user='eknow', password='Test1234')
+dev1 = Device()
 
 #RPC 정보 수집
 with dev1:
