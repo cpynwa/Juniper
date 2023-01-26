@@ -3,7 +3,7 @@ import re
 
 """
 Junos Ver = over 16.1R3
-filename = show_interfaces_status.py
+filename = show_optic_information.py
 location = /var/db/scripts/op/show_optic_information.py
 
 - 적용 명령어
