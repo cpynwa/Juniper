@@ -3,7 +3,7 @@ import re
 
 """
 Junos Ver = over 16.1R3
-filename = show_interfaces_status.py
+filename = error_check.py
 location = /var/db/script/op/error_check.py
 
 - 적용 명령어
